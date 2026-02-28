@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'app_routes.dart';
+import 'generated/l10n.dart';
 
 void main() {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +31,10 @@ class Application extends StatelessWidget {
 
       // Theme
       theme: ThemeData.dark(),
+
+      // Localization
+      supportedLocales: S.delegate.supportedLocales,
+      localizationsDelegates: const [S.delegate],
 
       // Routing
       initialRoute: AppRoutes.games,

@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # Datbase
+  # Database
   drift: ^2.31.0
   drift_flutter: ^0.2.8
   path_provider: ^2.1.5
@@ -19,7 +19,10 @@ dependencies:
   bloc: ^9.2.0
   meta: ^1.17.0
   flutter_bloc: ^9.1.1
-  
+
+  # Localization
+  intl: ^0.20.2
+
   # UI
   flutter_native_splash: ^2.4.7
 
@@ -38,12 +41,15 @@ flutter:
 # Flutter Native Splash configuration
 flutter_native_splash:
   # Background color 
-  color: "#000000" 
-  
+  color: "#000000"
+
   # Path to the splash screen image
   image: assets/images/splash_logo.png
-  
+
   # Optional: Set the background color for the app icon on Android 12 and above
   android_12:
     color: "#000000"
     image: assets/images/splash_logo.png
+    
+flutter_intl:
+  enabled: true
