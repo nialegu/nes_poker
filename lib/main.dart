@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:nes_poker_cash_tools/app_routes.dart';
+
+import 'app_routes.dart';
 
 void main() {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -31,7 +32,7 @@ class Application extends StatelessWidget {
       theme: ThemeData.dark(),
 
       // Routing
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.games,
       onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }

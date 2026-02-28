@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:nes_poker_cash_tools/presentation/home/home_screen.dart';
+
+import 'presentation/games/games_screen.dart';
 
 class AppRoutes {
-  static const String home = '/';
+  static const String games = '/';
 
   // On generate route
   static Route<dynamic>? onGenerateRoute(
     RouteSettings settings,
   ) => switch (settings.name) {
-    // Home
-    home => MaterialPageRoute(
-      builder: (context) => const HomeScreen(),
+    // Games
+    games => MaterialPageRoute(
+      builder: (context) => const GamesScreen(),
     ),
 
     // Unknown route

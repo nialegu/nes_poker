@@ -10,9 +10,17 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # Datbase
   drift: ^2.31.0
   drift_flutter: ^0.2.8
   path_provider: ^2.1.5
+
+  # State management
+  bloc: ^9.2.0
+  meta: ^1.17.0
+  flutter_bloc: ^9.1.1
+  
+  # UI
   flutter_native_splash: ^2.4.7
 
 dev_dependencies:
