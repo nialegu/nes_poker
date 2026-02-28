@@ -1,0 +1,37 @@
+name: nes_poker_cash_tools
+description: ""
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.10.7
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  flutter_native_splash: ^2.4.7
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+flutter:
+
+  uses-material-design: true
+
+# Flutter Native Splash configuration
+flutter_native_splash:
+  # Background color 
+  color: "#000000" 
+  
+  # Path to the splash screen image
+  image: assets/images/splash_logo.png
+  
+  # Optional: Set the background color for the app icon on Android 12 and above
+  android_12:
+    color: "#000000"
+    image: assets/images/splash_logo.png
