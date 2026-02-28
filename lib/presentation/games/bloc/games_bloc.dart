@@ -20,12 +20,14 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
           final games = await _repository.fetchGames();
           emit(GamesLoaded(games: games));
         } catch (e) {
-          emit(
-            GamesError(
-              games: state.games,
-              message: e.toString(),
-            ),
-          );
+          if (!isClosed) {
+            emit(
+              GamesError(
+                games: state.games,
+                message: e.toString(),
+              ),
+            );
+          }
         }
       },
     );
