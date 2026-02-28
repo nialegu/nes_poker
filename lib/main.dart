@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:nes_poker_cash_tools/app_routes.dart';
 
 void main() {
   final widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -10,6 +11,12 @@ void main() {
   );
 
   runApp(const Application());
+
+  // Remove native splash
+  Future.delayed(
+    const Duration(seconds: 1),
+    () => FlutterNativeSplash.remove(),
+  );
 }
 
 class Application extends StatelessWidget {
@@ -17,21 +24,15 @@ class Application extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Remove native splash
-    Future.delayed(
-      const Duration(seconds: 2),
-      () {
-        FlutterNativeSplash.remove();
-      },
-    );
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('NES Poker Cash Tools'),
-        ),
-      ),
+
+      // Theme
+      theme: ThemeData.dark(),
+
+      // Routing
+      initialRoute: AppRoutes.home,
+      onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
 }
