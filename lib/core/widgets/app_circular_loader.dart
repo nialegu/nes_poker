@@ -5,7 +5,6 @@ class AppCircularLoader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO
-    return const CircularProgressIndicator();
+    return const CircularProgressIndicator.adaptive();
   }
 }

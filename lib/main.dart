@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'app_routes.dart';
@@ -34,7 +35,12 @@ class Application extends StatelessWidget {
 
       // Localization
       supportedLocales: S.delegate.supportedLocales,
-      localizationsDelegates: const [S.delegate],
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
 
       // Routing
       initialRoute: AppRoutes.games,
