@@ -12,8 +12,8 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
   final _repository = GamesRepository();
 
   GamesBloc() : super(GamesInitial()) {
-    // Fetch games
-    on<GamesFetch>(
+    // Update games
+    on<GamesUpdate>(
       (event, emit) async {
         emit(GamesLoading(games: state.games));
         try {

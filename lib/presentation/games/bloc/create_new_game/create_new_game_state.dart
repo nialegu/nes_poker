@@ -7,7 +7,11 @@ sealed class CreateNewGameState {}
 final class CreateNewGameInitial extends CreateNewGameState {}
 
 // Success
-final class CreateNewGameSuccess extends CreateNewGameState {}
+final class CreateNewGameSuccess extends CreateNewGameState {
+  final Game game;
+
+  CreateNewGameSuccess({required this.game});
+}
 
 // Loading
 final class CreateNewGameLoading extends CreateNewGameState {}

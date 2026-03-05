@@ -3,4 +3,4 @@ part of 'games_bloc.dart';
 @immutable
 sealed class GamesEvent {}
 
-final class GamesFetch extends GamesEvent {}
+final class GamesUpdate extends GamesEvent {}

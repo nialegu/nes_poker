@@ -10,14 +10,14 @@ class GamesRepository {
 
   /// Create game. Return an instance of a new game
   Future<Game> createGame({
-    required GamesCompanion game,
+    required GamesCompanion gameCompanion,
     required List<int> playerIds,
   }) async => await database.transaction(
     () async {
       // Create game
       final response = await database
           .into(database.games)
-          .insertReturning(game);
+          .insertReturning(gameCompanion);
 
       // Create relations between game and players
       await database.batch(

@@ -16,7 +16,7 @@ class GamesScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => GamesBloc()
         // Initially update
-        ..add(GamesFetch()),
+        ..add(GamesUpdate()),
 
       // UI
       child: Scaffold(
@@ -26,13 +26,7 @@ class GamesScreen extends StatelessWidget {
         ),
 
         // Add new game button
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => Navigator.pushNamed(
-            context,
-            AppRoutes.createNewGame,
-          ),
-          child: Icon(Icons.add),
-        ),
+        floatingActionButton: _FloatingActionButton(),
 
         // Body
         body: BlocBuilder<GamesBloc, GamesState>(
@@ -64,6 +58,29 @@ class GamesScreen extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+// Open the screen of creating new game
+class _FloatingActionButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final gamesBloc = context.read<GamesBloc>();
+
+    return FloatingActionButton(
+      onPressed: () async {
+        final result = await Navigator.pushNamed(
+          context,
+          AppRoutes.createNewGame,
+        );
+
+        // Update games after succeded creating game
+        if (result != null) {
+          gamesBloc.add(GamesUpdate());
+        }
+      },
+      child: Icon(Icons.add),
     );
   }
 }

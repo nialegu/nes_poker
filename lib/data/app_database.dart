@@ -16,7 +16,12 @@ part 'app_database.g.dart';
   ],
 )
 class AppDatabase extends _$AppDatabase {
-  AppDatabase([QueryExecutor? executor]) : super(executor ?? _openConnection());
+  /// [AppDatabase] instance is used as a singleton
+  factory AppDatabase() => _instance;
+
+  static final _instance = AppDatabase._internal();
+
+  AppDatabase._internal() : super(_openConnection());
 
   @override
   int get schemaVersion => 1;
