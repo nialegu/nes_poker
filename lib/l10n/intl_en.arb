@@ -3,5 +3,6 @@
   "noData": "No data",
   "createNewGame": "Create new game",
   "name": "Name",
-  "create": "Create"
+  "create": "Create",
+  "delete": "Delete"
 }

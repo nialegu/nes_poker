@@ -106,7 +106,7 @@ class __FormState extends State<_Form> {
 
         // Create button
         Positioned(
-          bottom: 15,
+          bottom: 30,
           child: ElevatedButton(
             onPressed: !_canCreate
                 ? null
@@ -120,7 +120,7 @@ class __FormState extends State<_Form> {
                       name: _nameController.text,
                     );
 
-                    formCubit.create(
+                    formCubit.createGame(
                       gameCompanion: gameCompanion,
                       // TODO
                       playerIds: [],

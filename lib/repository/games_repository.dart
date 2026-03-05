@@ -1,3 +1,5 @@
+import 'package:drift/drift.dart';
+
 import '/data/app_database.dart';
 
 class GamesRepository {
@@ -5,8 +7,7 @@ class GamesRepository {
   final database = AppDatabase();
 
   /// Fetch the list of games
-  Future<List<Game>> fetchGames() async =>
-      await database.select(database.games).get();
+  Future<List<Game>> fetchGames() async => await database.games.select().get();
 
   /// Create game. Return an instance of a new game
   Future<Game> createGame({
@@ -33,6 +34,17 @@ class GamesRepository {
       );
 
       return response;
+    },
+  );
+
+  /// Delete game
+  Future<void> deleteGameById(int id) async => await database.transaction(
+    () async {
+      // Delete game
+      await database.games.deleteWhere((tbl) => tbl.id.equals(id));
+
+      // Delete relations with players
+      await database.gamePlayers.deleteWhere((tbl) => tbl.gameId.equals(id));
     },
   );
 }

@@ -13,7 +13,7 @@ class CreateNewGameCubit extends Cubit<CreateNewGameState> {
   CreateNewGameCubit() : super(CreateNewGameInitial());
 
   // Create new game
-  void create({
+  void createGame({
     required GamesCompanion gameCompanion,
     required List<int> playerIds,
   }) async {
