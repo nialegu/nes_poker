@@ -6,4 +6,7 @@ mixin TableMixin on Table {
 
   // Created at
   late final createdAt = dateTime().withDefault(currentDateAndTime)();
+
+  // Name
+  late final name = text()();
 }

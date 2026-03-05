@@ -2,5 +2,5 @@ import 'package:drift/drift.dart';
 
 import '../mixins/table_mixin.dart';
 
-@DataClassName('Game')
-class Games extends Table with TableMixin {}
+@DataClassName('Player')
+class Players extends Table with TableMixin {}

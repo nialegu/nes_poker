@@ -2,13 +2,17 @@ import 'package:drift/drift.dart';
 import 'package:drift_flutter/drift_flutter.dart';
 import 'package:path_provider/path_provider.dart';
 
+import 'tables/game_players.dart';
 import 'tables/games.dart';
+import 'tables/players.dart';
 
 part 'app_database.g.dart';
 
 @DriftDatabase(
   tables: [
     Games,
+    GamePlayers,
+    Players,
   ],
 )
 class AppDatabase extends _$AppDatabase {

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/games/games_screen.dart';
+import 'presentation/games/screens/create_new_game_screen.dart';
+import 'presentation/games/screens/games_screen.dart';
 
 class AppRoutes {
-  static const String games = '/';
+  static const String games = '/games';
+  static const String createNewGame = '$games/create';
 
   // On generate route
   static Route<dynamic>? onGenerateRoute(
@@ -11,7 +13,12 @@ class AppRoutes {
   ) => switch (settings.name) {
     // Games
     games => MaterialPageRoute(
-      builder: (context) => const GamesScreen(),
+      builder: (_) => const GamesScreen(),
+    ),
+
+    // Create new game
+    createNewGame => MaterialPageRoute(
+      builder: (_) => const CreateNewGameScreen(),
     ),
 
     // Unknown route

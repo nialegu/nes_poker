@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '/app_routes.dart';
 import '/core/widgets/app_circular_loader.dart';
 import '/generated/l10n.dart';
-import 'bloc/games_bloc.dart';
-import 'widgets/game_card.dart';
+import '../bloc/games/games_bloc.dart';
+import '../widgets/game_card.dart';
 
 class GamesScreen extends StatelessWidget {
   const GamesScreen({super.key});
@@ -26,7 +27,10 @@ class GamesScreen extends StatelessWidget {
 
         // Add new game button
         floatingActionButton: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () => Navigator.pushNamed(
+            context,
+            AppRoutes.createNewGame,
+          ),
           child: Icon(Icons.add),
         ),
 
