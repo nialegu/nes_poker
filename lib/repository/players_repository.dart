@@ -8,13 +8,26 @@ class PlayersRepository extends AppRepository {
   Future<List<Player>> fetchPlayers() async =>
       await database.players.select().get();
 
+  // Fetch the list of players by game id
+  Future<List<Player>> fetchPlayersByGameId(int gameId) async {
+    final query = database.players.select().join([
+      innerJoin(
+        database.gamePlayers,
+        database.gamePlayers.playerId.equalsExp(database.players.id),
+      ),
+    ])..where(database.gamePlayers.gameId.equals(gameId));
+
+    final result = await query.get();
+    return result.map((row) => row.readTable(database.players)).toList();
+  }
+
   // Create player
   Future<Player> createPlayer({
     required PlayersCompanion playerCompanion,
   }) async => await database.players.insertReturning(playerCompanion);
 
   // Delete player
-  Future<void> deletePlayerById({required int id}) async =>
+  Future<void> deletePlayerById(int id) async =>
       await database.players.deleteWhere(
         (tbl) => tbl.id.equals(id),
       );

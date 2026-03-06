@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '/app_routes.dart';
 import '/core/widgets/app_circular_loader.dart';
 import '/generated/l10n.dart';
-import 'bloc/games/games_bloc.dart';
+import '/core/bloc/games/games_bloc.dart';
 import 'widgets/game_card.dart';
 
 class GamesScreen extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:meta/meta.dart';
 
 import '/data/app_database.dart';
@@ -14,6 +15,7 @@ class GamesBloc extends Bloc<GamesEvent, GamesState> {
   GamesBloc() : super(GamesInitial()) {
     // Update games
     on<GamesUpdate>(
+      transformer: droppable(),
       (event, emit) async {
         emit(GamesLoading(games: state.games));
         try {
