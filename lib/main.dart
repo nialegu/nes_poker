@@ -69,21 +69,26 @@ class _RootScreenState extends State<RootScreen> {
   // Build navigator
   Widget _buildNavigator(int index) => Navigator(
     key: _navigatorKeys[index],
-    initialRoute: switch (index) {
-      // Games
-      0 => AppRoutes.games,
-      // Players
-      1 => AppRoutes.players,
-      // Default
-      _ => '/',
-    },
-    onGenerateRoute: (settings) => switch (index) {
-      // Games
-      0 => AppRoutes.onGamesRoute(settings),
-      // Players
-      1 => AppRoutes.onPlayersRoute(settings),
-      // Default
-      _ => null,
+    onGenerateRoute: (settings) {
+      if (settings.name == AppRoutes.root) {
+        settings = RouteSettings(
+          name: switch (index) {
+            0 => AppRoutes.games,
+            1 => AppRoutes.players,
+            _ => AppRoutes.root,
+          },
+          arguments: settings.arguments,
+        );
+      }
+
+      return switch (index) {
+        // Games
+        0 => AppRoutes.onGamesRoute(settings),
+        // Players
+        1 => AppRoutes.onPlayersRoute(settings),
+        // Default
+        _ => null,
+      };
     },
   );
 
