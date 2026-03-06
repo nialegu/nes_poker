@@ -15,21 +15,44 @@ class CreateNewGameCubit extends Cubit<CreateNewGameState> {
   // Create new game
   void createGame({
     required GamesCompanion gameCompanion,
-    required List<int> playerIds,
   }) async {
     if (state is CreateNewGameLoading) return;
 
     try {
-      emit(CreateNewGameLoading());
+      emit(
+        CreateNewGameLoading(
+          players: state.players,
+        ),
+      );
 
       final game = await _repository.createGame(
         gameCompanion: gameCompanion,
-        playerIds: playerIds,
+        playerIds: state.players.map((player) => player.id).toList(),
       );
 
-      emit(CreateNewGameSuccess(game: game));
+      emit(
+        CreateNewGameSuccess(
+          game: game,
+          players: state.players,
+        ),
+      );
     } catch (error) {
-      emit(CreateNewGameError(error: error.toString()));
+      emit(
+        CreateNewGameError(
+          error: error.toString(),
+          players: state.players,
+        ),
+      );
     }
+  }
+
+  // Add player ID
+  void addPlayerId(Player player) {
+    if (state is CreateNewGameLoading) return;
+    emit(
+      CreateNewGameInitial(
+        players: state.players..add(player),
+      ),
+    );
   }
 }

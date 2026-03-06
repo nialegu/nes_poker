@@ -1,11 +1,9 @@
 import 'package:drift/drift.dart';
 
 import '/data/app_database.dart';
+import 'app_repository.dart';
 
-class GamesRepository {
-  // Database instance
-  final database = AppDatabase();
-
+class GamesRepository extends AppRepository {
   /// Fetch the list of games
   Future<List<Game>> fetchGames() async => await database.games.select().get();
 
@@ -16,9 +14,7 @@ class GamesRepository {
   }) async => await database.transaction(
     () async {
       // Create game
-      final response = await database
-          .into(database.games)
-          .insertReturning(gameCompanion);
+      final response = await database.games.insertReturning(gameCompanion);
 
       // Create relations between game and players
       await database.batch(

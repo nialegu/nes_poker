@@ -4,5 +4,6 @@
   "createNewGame": "Create new game",
   "name": "Name",
   "create": "Create",
-  "delete": "Delete"
+  "delete": "Delete",
+  "player": "Player"
 }

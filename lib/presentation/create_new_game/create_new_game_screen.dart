@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '/core/widgets/app_circular_loader.dart';
 import '/data/app_database.dart';
-import '../bloc/create_new_game/create_new_game_cubit.dart';
+import 'bloc/create_new_game/create_new_game_cubit.dart';
 import '/generated/l10n.dart';
+import 'widgets/add_players_form.dart';
 
 class CreateNewGameScreen extends StatelessWidget {
   const CreateNewGameScreen({super.key});
@@ -84,6 +86,7 @@ class __FormState extends State<_Form> {
             padding: EdgeInsets.all(15),
             child: Column(
               spacing: 15,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Name
                 TextFormField(
@@ -99,6 +102,9 @@ class __FormState extends State<_Form> {
                     labelText: S.of(context).name,
                   ),
                 ),
+
+                // Add players form
+                AddPlayersForm(),
               ],
             ),
           ),
@@ -107,26 +113,27 @@ class __FormState extends State<_Form> {
         // Create button
         Positioned(
           bottom: 30,
-          child: ElevatedButton(
-            onPressed: !_canCreate
-                ? null
-                : () {
-                    if (!_formKey.currentState!.validate()) {
-                      // TODO
-                    }
+          child: BlocSelector<CreateNewGameCubit, CreateNewGameState, bool>(
+            selector: (state) => state is CreateNewGameLoading,
+            builder: (context, isLoading) => ElevatedButton(
+              onPressed: !_canCreate || isLoading
+                  ? null
+                  : () {
+                      if (!_formKey.currentState!.validate()) {
+                        // TODO
+                      }
 
-                    final formCubit = context.read<CreateNewGameCubit>();
-                    final gameCompanion = GamesCompanion.insert(
-                      name: _nameController.text,
-                    );
+                      final formCubit = context.read<CreateNewGameCubit>();
+                      final gameCompanion = GamesCompanion.insert(
+                        name: _nameController.text,
+                      );
 
-                    formCubit.createGame(
-                      gameCompanion: gameCompanion,
-                      // TODO
-                      playerIds: [],
-                    );
-                  },
-            child: Text(S.of(context).create),
+                      formCubit.createGame(gameCompanion: gameCompanion);
+                    },
+              child: isLoading
+                  ? AppCircularLoader()
+                  : Text(S.of(context).create),
+            ),
           ),
         ),
       ],

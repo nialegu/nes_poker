@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'presentation/games/screens/create_new_game_screen.dart';
-import 'presentation/games/screens/games_screen.dart';
+import 'presentation/create_new_game/create_new_game_screen.dart';
+import 'presentation/games/games_screen.dart';
 
 class AppRoutes {
   static const String games = '/games';

@@ -28,5 +28,6 @@ class MessageLookup extends MessageLookupByLibrary {
     "games": MessageLookupByLibrary.simpleMessage("Games"),
     "name": MessageLookupByLibrary.simpleMessage("Name"),
     "noData": MessageLookupByLibrary.simpleMessage("No data"),
+    "player": MessageLookupByLibrary.simpleMessage("Player"),
   };
 }
