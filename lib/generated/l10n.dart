@@ -123,6 +123,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Players`
+  String get players {
+    return Intl.message(
+      'Players',
+      name: 'players',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

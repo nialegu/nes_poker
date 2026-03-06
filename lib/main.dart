@@ -43,8 +43,80 @@ class Application extends StatelessWidget {
       ],
 
       // Routing
-      initialRoute: AppRoutes.games,
+      initialRoute: AppRoutes.root,
       onGenerateRoute: AppRoutes.onGenerateRoute,
+    );
+  }
+}
+
+// Root screen
+class RootScreen extends StatefulWidget {
+  const RootScreen({super.key});
+
+  @override
+  State<RootScreen> createState() => _RootScreenState();
+}
+
+class _RootScreenState extends State<RootScreen> {
+  int _index = 0;
+
+  // Navigator keys
+  final _navigatorKeys = [
+    GlobalKey<NavigatorState>(),
+    GlobalKey<NavigatorState>(),
+  ];
+
+  // Build navigator
+  Widget _buildNavigator(int index) => Navigator(
+    key: _navigatorKeys[index],
+    initialRoute: switch (index) {
+      // Games
+      0 => AppRoutes.games,
+      // Players
+      1 => AppRoutes.players,
+      // Default
+      _ => '/',
+    },
+    onGenerateRoute: (settings) => switch (index) {
+      // Games
+      0 => AppRoutes.onGamesRoute(settings),
+      // Players
+      1 => AppRoutes.onPlayersRoute(settings),
+      // Default
+      _ => null,
+    },
+  );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // Body
+      body: IndexedStack(
+        index: _index,
+        children: [
+          _buildNavigator(0),
+          _buildNavigator(1),
+        ],
+      ),
+
+      // Bottom navigation bar
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _index,
+        onTap: (i) => setState(() => _index = i),
+        items: [
+          // Games
+          BottomNavigationBarItem(
+            icon: Icon(Icons.games),
+            label: S.of(context).games,
+          ),
+
+          // Players
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: S.of(context).players,
+          ),
+        ],
+      ),
     );
   }
 }
