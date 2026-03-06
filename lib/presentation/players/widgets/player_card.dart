@@ -15,6 +15,7 @@ class PlayerCard extends StatelessWidget {
   Widget build(BuildContext context) {
     // Provide delete cubit
     return BlocProvider(
+      key: ValueKey(player.id),
       create: (context) => DeletePlayerCubit(playerId: player.id),
 
       // Listen to success deleting

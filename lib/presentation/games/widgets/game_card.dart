@@ -23,6 +23,7 @@ class GameCard extends StatelessWidget {
       providers: [
         // Delete game
         BlocProvider(
+          key: ValueKey(game.id),
           create: (context) => DeleteGameCubit(gameId: game.id),
         ),
 

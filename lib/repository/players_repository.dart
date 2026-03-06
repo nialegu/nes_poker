@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 
-import '../data/app_database.dart';
 import 'app_repository.dart';
+import '/data/app_database.dart';
 
 class PlayersRepository extends AppRepository {
   // Fetch the list of players
